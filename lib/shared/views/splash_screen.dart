@@ -12,7 +12,8 @@ class SplashScreenPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     //for testing
-    // AutoRouter.of(context).push(Route());
+    AutoRouter.of(context).replace(ProfilePage());
+
     final auth = ref.read(authServiceProvider);
     final authState = ref.watch(authStateProvider);
 

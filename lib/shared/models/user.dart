@@ -3,7 +3,7 @@ class UserModel {
   final String email;
   final String fullName;
   final String role;
-  final Map courses;
+  final List courses;
   final Map schoolCard;
   final String schoolID;
 
@@ -23,9 +23,14 @@ class UserModel {
       email: json['email'] ?? '',
       fullName: json['fullName'] ?? '',
       role: json['role'] ?? '',
-      courses: json['courses'] ?? {},
+      courses: json['courses'] ?? [],
       schoolCard: json['schoolCard'] ?? {},
       schoolID: json['schoolID'] ?? '',
     );
   }
 }
+// example of a map 
+// int temp = 5;
+// String name = "bib";
+// Map temoUser = {temp: 5, name: 'bob'};
+// temoUser.name;
