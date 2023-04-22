@@ -17,35 +17,35 @@ class SplashScreenPage extends HookConsumerWidget {
     final auth = ref.read(authServiceProvider);
     final authState = ref.watch(authStateProvider);
 
-    if (authState.value != null) {
-      debugPrint('Auth is vaild for ${auth.currentUser?.email}');
-      if (auth.currentUser!.email!.endsWith("@nyit.edu")) {
-        final userData = ref.watch(userDataProvider);
-        final firestore = ref.watch(firestoreProvider);
-        debugPrint('Auth ends in @NYIT.edu :D');
-        if (userData.value?.role == 'student') {
-          debugPrint('User has document and is a student');
-          AutoRouter.of(context).push(const StudentHomePage());
-        } else if ((userData.value?.role == 'professor')) {
-          debugPrint('User has document and is a professor');
-          AutoRouter.of(context).push(const ProfessorHomePage());
-        } else if (userData.value?.role == 'admin') {
-          debugPrint('User has document and is an admin');
-          AutoRouter.of(context).push(const AdminHomePage());
-        } else if (userData.value?.role == "") {
-          debugPrint(
-              'User does NOT have a document, they will become a student unless changed');
-          firestore.createAccount();
-          AutoRouter.of(context).push(const StudentHomePage());
-        }
-      } else {
-        AutoRouter.of(context).push(const ErrorPage());
-      }
-    } else {
-      // debugPrint('Auth is broken, going back to LoginPage');
-      // auth.signOut();
-      AutoRouter.of(context).push(LoginPage());
-    }
+    // if (authState.value != null) {
+    //   debugPrint('Auth is vaild for ${auth.currentUser?.email}');
+    //   if (auth.currentUser!.email!.endsWith("@nyit.edu")) {
+    //     final userData = ref.watch(userDataProvider);
+    //     final firestore = ref.watch(firestoreProvider);
+    //     debugPrint('Auth ends in @NYIT.edu :D');
+    //     if (userData.value?.role == 'student') {
+    //       debugPrint('User has document and is a student');
+    //       AutoRouter.of(context).push(const StudentHomePage());
+    //     } else if ((userData.value?.role == 'professor')) {
+    //       debugPrint('User has document and is a professor');
+    //       AutoRouter.of(context).push(const ProfessorHomePage());
+    //     } else if (userData.value?.role == 'admin') {
+    //       debugPrint('User has document and is an admin');
+    //       AutoRouter.of(context).push(const AdminHomePage());
+    //     } else if (userData.value?.role == "") {
+    //       debugPrint(
+    //           'User does NOT have a document, they will become a student unless changed');
+    //       firestore.createAccount();
+    //       AutoRouter.of(context).push(const StudentHomePage());
+    //     }
+    //   } else {
+    //     AutoRouter.of(context).push(const ErrorPage());
+    //   }
+    // } else {
+    //   // debugPrint('Auth is broken, going back to LoginPage');
+    //   // auth.signOut();
+    //   AutoRouter.of(context).push(LoginPage());
+    // }
 
     return Scaffold(
       body: Center(
